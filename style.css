@@ -141,10 +141,13 @@
     height: auto;
     display: block;
     z-index: 0;
+    transform: scale(1);
+    transform-origin: center bottom;
     user-select: none;
     -webkit-user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
+    transition: transform 0.35s ease;
   }
 
   @media (max-width: 1550px) {
@@ -1336,6 +1339,20 @@
       width: calc(100% - (var(--content-gutter) * 2));
     }
 
+    .hero__subtitle {
+      font-size: 20px;
+    }
+
+    .hero__title {
+      margin-bottom: 32px;
+    }
+
+    .hero__desc {
+      max-width: 620px;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
     .stats {
       margin: 48px 0;
     }
@@ -1444,6 +1461,45 @@
     }
   }
 
+  @media (max-width: 960px) {
+    .hero__bg img {
+      transform: scale(clamp(1, calc(1 + ((960px - 100vw) / 640)), 2));
+    }
+
+    .hero__content {
+      padding: 96px 0 56px;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .hero__buttons {
+      flex-wrap: wrap;
+    }
+
+    .hero__right {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 0;
+    }
+
+    .hero__stats p {
+      font-size: 20px;
+    }
+
+    .hero__person {
+      left: 50%;
+      right: auto;
+      width: 122%;
+      transform: translateX(-50%);
+      justify-content: center;
+    }
+
+    .hero__person img {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .back-to-top {
       bottom: 16px;
@@ -1476,6 +1532,65 @@
 
     .page-intro {
       padding: 24px 0 16px;
+    }
+
+    .hero__bg {
+      margin-bottom: 130px;
+    }
+
+    .hero__content {
+      padding: 80px 0 40px;
+      gap: 20px;
+    }
+
+    .hero__subtitle {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .hero__title {
+      margin-bottom: 24px;
+    }
+
+    .hero__desc {
+      font-size: 16px;
+      line-height: 1.35;
+      max-width: 320px;
+      margin-bottom: 16px;
+    }
+
+    .hero__buttons {
+      gap: 12px;
+    }
+
+    .hero__buttons .btn {
+      width: 100%;
+    }
+
+    .hero__right {
+      display: none;
+    }
+
+    .hero__person {
+      width: 168%;
+    }
+
+    .hero__ticker {
+      padding: 12px 0;
+    }
+
+    .hero__ticker-group {
+      gap: 16px;
+      padding-right: 16px;
+    }
+
+    .hero__ticker-group span {
+      font-size: 18px;
+    }
+
+    .hero__ticker-group svg {
+      width: 20px;
+      height: 20px;
     }
 
     .page-intro .container {
