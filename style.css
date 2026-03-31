@@ -7,6 +7,7 @@
 
   :root {
     --content-gutter: 16px;
+    --container-max-width: 1376px;
   }
   
   body {
@@ -18,8 +19,44 @@
   /* CONTAINER */
   .container {
     margin: 0 auto;
-    max-width: 1376px;
+    max-width: var(--container-max-width);
     padding: 0;
+  }
+
+  .back-to-top {
+    position: fixed;
+    right: max(var(--content-gutter), calc((100vw - var(--container-max-width)) / 2 + var(--content-gutter)));
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #171717;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(23, 23, 23, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.25s ease;
+    z-index: 30;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .back-to-top svg {
+    display: block;
   }
   
   /* HEADER */
@@ -41,6 +78,8 @@
   .logo {
     font-size: 24px;
     font-weight: 600;
+    color: #000;
+    text-decoration: none;
   }
   
   .nav {
@@ -153,7 +192,8 @@
   .hero__right {
     grid-column: 2;
     grid-row: 3 / 5;
-    align-self: start;
+    align-self: end;
+    margin-top: -32px;
   }
   
   .hero__person {
@@ -166,6 +206,7 @@
     align-items: flex-end;
     justify-content: flex-end;
     z-index: 2;
+    pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
   }
@@ -219,7 +260,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
     text-align: left;
     position: static;
   }
@@ -244,6 +284,7 @@
   .hero__avatars img {
     width: 64px;
     height: 64px;
+    border: 2px solid #fff;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -263,7 +304,7 @@
   }
 
   .hero__avatars img + img {
-    margin-left: -42px;
+    margin-left: -24px;
   }
   
   /* STATS SECTION */
@@ -873,6 +914,250 @@
     line-height: 1.2;
   }
 
+  .about-benefits {
+    padding: 0 0 120px;
+    background: #d6c3a5;
+  }
+
+  .about-benefits__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .about-benefits__line {
+    display: block;
+  }
+
+  .about-benefits__line--accent {
+    margin-left: 150px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .about-benefits__line--offset {
+    margin-right: 100px;
+  }
+
+  .about-benefits__cards {
+    position: relative;
+    height: 320px;
+    margin-top: 56px;
+  }
+
+  .benefit-card {
+    position: absolute;
+    border-radius: 24px;
+    padding: 42px 32px;
+    font-size: 24px;
+    line-height: 1.05;
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
+  }
+
+  .benefit-card--white {
+    background: #fff;
+    color: #111;
+  }
+
+  .benefit-card--orange {
+    background: #ff8a47;
+    color: #111;
+  }
+
+  .benefit-card--blue {
+    background: #0078e2;
+    color: #111;
+  }
+
+  .benefit-card__number {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .benefit-card__text {
+    max-width: 100%;
+  }
+
+  .benefit-card--card-1 {
+    top: 40px;
+    left: 0;
+    width: 330px;
+    transform: rotate(-15deg);
+  }
+
+  .benefit-card--card-2 {
+    top: 128px;
+    left: 176px;
+    width: 400px;
+    transform: rotate(5deg);
+  }
+
+  .benefit-card--card-3 {
+    top: 26px;
+    left: 338px;
+    width: 360px;
+    transform: rotate(-6deg);
+  }
+
+  .benefit-card--card-4 {
+    top: 100px;
+    left: 606px;
+    width: 338px;
+    transform: rotate(3deg);
+  }
+
+  .benefit-card--card-5 {
+
+    right: 180px;
+    width: 344px;
+    transform: rotate(-5deg);
+  }
+
+  .benefit-card--card-6 {
+    top: 100px;
+    right: 0;
+    width: 352px;
+    transform: rotate(10deg);
+  }
+
+  .work-process {
+    padding: 0 0 120px;
+    background: #d6c3a5;
+  }
+
+  .work-process__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .work-process__intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-process__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .work-process__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .work-process__text p {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .work-process__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .process-step {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .process-step__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .process-step__lead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .process-step__number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eb7839;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .process-step__lead h3 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .process-step__toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    flex-shrink: 0;
+    background: #2b7fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .process-step__toggle svg {
+    display: block;
+  }
+
+  .process-step.active .process-step__toggle {
+    transform: rotate(45deg);
+  }
+
+  .process-step__content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition:
+      height 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      margin-top 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .process-step.active .process-step__content {
+    opacity: 1;
+    margin-top: 24px;
+  }
+
+  .process-step__content p {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+
   .page-intro {
     background: #d6c3a5;
     padding: 40px 0 24px;
@@ -939,9 +1224,74 @@
     .about-section__title {
       flex-basis: auto;
     }
+
+    .about-benefits__title {
+      font-size: 52px;
+    }
+
+    .about-benefits__line--accent {
+      margin-left: 72px;
+    }
+
+    .about-benefits__line--offset {
+      margin-right: 48px;
+    }
+
+    .about-benefits__cards {
+      height: 620px;
+    }
+
+    .benefit-card {
+      font-size: 22px;
+    }
+
+    .benefit-card--card-1 {
+      top: 40px;
+      left: 0;
+      width: 290px;
+    }
+
+    .benefit-card--card-2 {
+      top: 168px;
+      left: 120px;
+      width: 320px;
+    }
+
+    .benefit-card--card-3 {
+      top: 24px;
+      left: 260px;
+      width: 300px;
+    }
+
+    .benefit-card--card-4 {
+      top: 286px;
+      left: 54px;
+      width: 320px;
+    }
+
+    .benefit-card--card-5 {
+      top: 170px;
+      right: 24px;
+      width: 312px;
+    }
+
+    .benefit-card--card-6 {
+      top: 372px;
+      right: 0;
+      width: 320px;
+    }
+
+    .work-process__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
   }
 
   @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 16px;
+    }
+
     .header__inner,
     .projects__header,
     .footer__inner {
@@ -994,6 +1344,14 @@
       padding: 40px 0 72px;
     }
 
+    .about-benefits {
+      padding: 0 0 72px;
+    }
+
+    .work-process {
+      padding: 0 0 72px;
+    }
+
     .about-section__container {
       gap: 20px;
     }
@@ -1006,9 +1364,77 @@
       font-size: 36px;
     }
 
+    .work-process__title {
+      font-size: 36px;
+    }
+
+    .about-benefits__title {
+      align-items: flex-start;
+      font-size: 34px;
+      text-align: left;
+    }
+
+    .about-benefits__cards {
+      height: auto;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
     .about-section__badge {
       font-size: 20px;
       padding: 14px 16px;
+    }
+
+    .about-benefits__line--accent,
+    .about-benefits__line--offset {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .benefit-card {
+      position: relative;
+      width: 100%;
+      padding: 42px 32px;
+      font-size: 24px;
+      transform: none;
+    }
+
+    .benefit-card--card-1,
+    .benefit-card--card-2,
+    .benefit-card--card-3,
+    .benefit-card--card-4,
+    .benefit-card--card-5,
+    .benefit-card--card-6 {
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      width: 100%;
+    }
+
+    .work-process__text p,
+    .process-step__content p {
+      font-size: 16px;
+    }
+
+    .process-step {
+      padding: 24px 20px;
+    }
+
+    .process-step__lead {
+      gap: 12px;
+    }
+
+    .process-step__number {
+      width: 48px;
+      height: 48px;
+      font-size: 28px;
+    }
+
+    .process-step__lead h3 {
+      font-size: 22px;
     }
 
     .about-section__text p,
