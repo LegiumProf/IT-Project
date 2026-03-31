@@ -1758,6 +1758,10 @@
       grid-template-columns: 1fr;
     }
 
+    .project-card__content {
+      gap: 16px;
+    }
+
     .project-card__bottom {
       flex-direction: column;
       align-items: flex-start;
