@@ -141,13 +141,11 @@
     height: auto;
     display: block;
     z-index: 0;
-    transform: scale(1);
-    transform-origin: center bottom;
     user-select: none;
     -webkit-user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
-    transition: transform 0.35s ease;
+    transition: width 0.35s ease, margin-left 0.35s ease;
   }
 
   @media (max-width: 1550px) {
@@ -1357,6 +1355,26 @@
       margin: 48px 0;
     }
 
+    .service {
+      padding: 24px;
+    }
+
+    .service__header h3 {
+      font-size: 30px;
+    }
+
+    .service__content {
+      grid-template-columns: 1fr;
+    }
+
+    .service__right {
+      justify-content: flex-start;
+    }
+
+    .service__right img {
+      width: min(100%, 420px);
+    }
+
     .stats__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1463,7 +1481,10 @@
 
   @media (max-width: 960px) {
     .hero__bg img {
-      transform: scale(clamp(1, calc(1 + ((960px - 100vw) / 640)), 2));
+      width: clamp(100%, calc(100% + ((960px - 100vw) * 0.5)), 200%);
+      max-width: none;
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
 
     .hero__content {
@@ -1608,6 +1629,75 @@
 
     .projects--page .project-card {
       min-height: auto;
+    }
+
+    .services {
+      padding: 48px 0;
+    }
+
+    .services__title {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .service {
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    .service.active {
+      padding-bottom: 0;
+    }
+
+    .service__header {
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .service__header h3 {
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .service__toggle {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 21px;
+    }
+
+    .service__toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .service.active .service__content {
+      margin-top: 20px;
+    }
+
+    .service__content {
+      gap: 20px;
+    }
+
+    .service__tags {
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .service__tags span {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    .service__left p {
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .service__right img {
+      width: 100%;
+      border-radius: 16px;
     }
 
     .about-hero__image {
