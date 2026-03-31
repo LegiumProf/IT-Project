@@ -4,6 +4,8 @@ const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 const projectGrids = document.querySelectorAll('[data-projects-grid]');
 const TELEGRAM_BOT_TOKEN = '8071276278:AAFvWUUM8QMGqgiJ9Oe-_K1M8u5VCqnpZos';
 const TELEGRAM_CHAT_ID = '1209666138';
+const TELEGRAM_PROFILE_URL = 'https://t.me/LegiumProf';
+const VK_PROFILE_URL = 'https://vk.com/semyonoffvadick';
 
 function createBackToTopButton() {
   const button = document.createElement('button');
@@ -280,6 +282,29 @@ function initNavContactLink() {
 
 initNavContactLink();
 
+function initExternalLinks() {
+  document.querySelectorAll('.cta__btn').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      window.open(TELEGRAM_PROFILE_URL, '_blank', 'noopener,noreferrer');
+    });
+  });
+
+  document.querySelectorAll('.contact__social[aria-label="Telegram"]').forEach(link => {
+    link.setAttribute('href', TELEGRAM_PROFILE_URL);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+
+  document.querySelectorAll('.contact__social[aria-label="VK"]').forEach(link => {
+    link.setAttribute('href', VK_PROFILE_URL);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+}
+
+initExternalLinks();
+
 function initMobileMenu() {
   const header = document.querySelector('.header');
   const headerActions = document.querySelector('.header__actions');
@@ -513,3 +538,63 @@ function initBenefitCardsMagnet() {
 }
 
 initBenefitCardsMagnet();
+
+function initRevealOnScroll() {
+  const revealTargets = document.querySelectorAll(`
+    .hero__subtitle,
+    .hero__title,
+    .hero__desc,
+    .hero__buttons,
+    .hero__right,
+    .stats__panel,
+    .projects__header,
+    .project-card,
+    .services__title,
+    .service,
+    .cta__inner,
+    .contact__info,
+    .contact__form-wrap,
+    .footer__inner,
+    .page-intro .container,
+    .about-section__row,
+    .about-benefits__title,
+    .benefit-card,
+    .work-process__intro,
+    .process-step,
+    .project-back,
+    .project-description .project-container,
+    .project-decorative .project-container,
+    .project-technologies .project-container,
+    .project-gallery,
+    .project-gallery .project-container
+  `);
+
+  if (!revealTargets.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    revealTargets.forEach(element => {
+      element.classList.add('is-visible');
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add('is-visible');
+      currentObserver.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.14,
+    rootMargin: '0px 0px -8% 0px',
+  });
+
+  revealTargets.forEach((element, index) => {
+    element.classList.add('reveal-on-scroll');
+    element.style.transitionDelay = `${Math.min(index % 6, 5) * 60}ms`;
+    observer.observe(element);
+  });
+}
+
+initRevealOnScroll();

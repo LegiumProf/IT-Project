@@ -166,6 +166,29 @@
     border: 1px solid #fff;
     color: #fff;
   }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll,
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
   
   /* HERO */
   .hero {
@@ -418,6 +441,14 @@
     width: calc(100% - 32px);
     max-width: 1376px;
   }
+
+  .services .container,
+  .contact .container,
+  .about-section .container,
+  .work-process .container {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+  }
   
   .projects__header {
     display: flex;
@@ -651,7 +682,7 @@
 
   .cta {
     background: linear-gradient(135deg, #ff7a2f, #e55a1c);
-    padding: 48px 0;
+    padding: 96px 0;
     text-align: center;
     color: #111;
   }
@@ -1021,7 +1052,8 @@
   }
 
   .about-section__photo-wrap {
-    border-radius: 24px;
+    padding: 0;
+    border-radius: 32px;
   }
 
   .about-section__photo-wrap {
@@ -1034,7 +1066,7 @@
     height: 100%;
     display: block;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 32px;
   }
 
   .about-card {
@@ -2110,9 +2142,6 @@
       padding: 0;
     }
 
-    .about-section__photo-wrap {
-      padding: 20px;
-    }
   }
 
   @media (max-width: 450px) {
