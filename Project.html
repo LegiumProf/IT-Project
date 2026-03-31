@@ -13,8 +13,7 @@
   <link rel="stylesheet" href="style.css?v=2026-03-31-1" />
   <link rel="stylesheet" href="project.css?v=2026-03-31-1" />
 </head>
-<body>
-  <main class="project-page">
+<body>  <main class="project-page">
     <section class="project-hero" data-project-hero>
       <div class="project-hero__media">
         <img
@@ -29,6 +28,17 @@
 
           <div class="project-hero__tags" data-project-tags></div>
         </div>
+      </div>
+    </section>
+
+    <section class="project-back">
+      <div class="project-container">
+        <a href="projects.html" class="project-back__link" onclick="if (window.history.length > 1) { window.history.back(); return false; }">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 19.92L8.48 13.4C7.71 12.63 7.71 11.37 8.48 10.6L15 4.07996" stroke="#171717" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Назад</span>
+        </a>
       </div>
     </section>
 
@@ -205,3 +215,6 @@
   <script src="project.js?v=2026-03-31-1"></script>
 </body>
 </html>
+
+
+

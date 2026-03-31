@@ -102,8 +102,28 @@ img {
   border-radius: var(--project-image-radius);
 }
 
+.project-back {
+  padding: 32px var(--project-padding) 0;
+}
+
+.project-back__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #111111;
+  text-decoration: none;
+  font-size: 16px;
+  transition:
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.24s ease;
+}
+
+.project-back__link svg {
+  display: block;
+}
+
 .project-description {
-  padding: 96px var(--project-padding) 0;
+  padding: 32px var(--project-padding) 0;
 }
 
 .project-description__title {
@@ -240,6 +260,13 @@ img {
   margin-top: 24px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .project-back__link:hover {
+    transform: translateX(-4px);
+    opacity: 0.72;
+  }
+}
+
 .cta {
   margin-top: 96px;
 }
@@ -289,7 +316,7 @@ img {
   }
 
   .project-description {
-    padding-top: 96px;
+    padding-top: 32px;
   }
 
   .project-description__title {

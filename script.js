@@ -2,6 +2,8 @@ const services = document.querySelectorAll('.service');
 const processSteps = document.querySelectorAll('.process-step');
 const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 const projectGrids = document.querySelectorAll('[data-projects-grid]');
+const TELEGRAM_BOT_TOKEN = '8071276278:AAFvWUUM8QMGqgiJ9Oe-_K1M8u5VCqnpZos';
+const TELEGRAM_CHAT_ID = '1209666138';
 
 function createBackToTopButton() {
   const button = document.createElement('button');
@@ -248,6 +250,181 @@ function initPrimaryActions() {
 }
 
 initPrimaryActions();
+
+function initNavContactLink() {
+  const contactSection = document.querySelector('.contact');
+  const navLinks = document.querySelectorAll('.nav a');
+  const contactLink = navLinks[navLinks.length - 1];
+
+  if (!contactLink) return;
+
+  if (contactSection) {
+    if (!contactSection.id) {
+      contactSection.id = 'contact';
+    }
+
+    contactLink.setAttribute('href', '#contact');
+    contactLink.addEventListener('click', event => {
+      event.preventDefault();
+      contactSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+
+    return;
+  }
+
+  contactLink.setAttribute('href', 'index.html#contact');
+}
+
+initNavContactLink();
+
+function initMobileMenu() {
+  const header = document.querySelector('.header');
+  const headerActions = document.querySelector('.header__actions');
+  const nav = document.querySelector('.nav');
+
+  if (!header || !headerActions || !nav) return;
+
+  let menuToggle = headerActions.querySelector('.header__menu-toggle');
+
+  if (!menuToggle) {
+    menuToggle = document.createElement('button');
+    menuToggle.className = 'header__menu-toggle';
+    menuToggle.type = 'button';
+    menuToggle.setAttribute('aria-label', 'Open menu');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 7H21" stroke="#171717" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M3 12H21" stroke="#171717" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M3 17H21" stroke="#171717" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    `;
+    headerActions.append(menuToggle);
+  }
+
+  const closeMenu = () => {
+    header.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('menu-open');
+
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', event => {
+    if (!header.classList.contains('menu-open')) return;
+    if (event.target.closest('.header__inner')) return;
+
+    closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      closeMenu();
+    }
+  });
+}
+
+initMobileMenu();
+
+function initTelegramForms() {
+  const contactForms = document.querySelectorAll('.contact__form');
+
+  if (!contactForms.length) return;
+
+  contactForms.forEach(form => {
+    const submitButton = form.querySelector('.contact__submit');
+    let statusMessage = form.querySelector('.contact__status');
+
+    if (!statusMessage) {
+      statusMessage = document.createElement('p');
+      statusMessage.className = 'contact__status';
+      statusMessage.setAttribute('aria-live', 'polite');
+      form.append(statusMessage);
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const name = (formData.get('name') || '').toString().trim();
+      const contact = (formData.get('contact') || '').toString().trim();
+      const message = (formData.get('message') || '').toString().trim();
+      const pageTitle = document.title;
+      const pageUrl = window.location.href;
+
+      const text = [
+        'Новая заявка с сайта',
+        '',
+        `Страница: ${pageTitle}`,
+        `Ссылка: ${pageUrl}`,
+        '',
+        `Имя: ${name || 'Не указано'}`,
+        `Контакт: ${contact || 'Не указан'}`,
+        `Сообщение: ${message || 'Не указано'}`,
+      ].join('\n');
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+      }
+
+      statusMessage.textContent = '';
+      statusMessage.classList.remove('is-success', 'is-error');
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Telegram request failed');
+        }
+
+        if (submitButton) {
+          submitButton.textContent = 'Отправлено';
+        }
+
+        statusMessage.textContent = 'Сообщение успешно отправлено. Скоро свяжусь с вами.';
+        statusMessage.classList.add('is-success');
+
+        form.reset();
+      } catch (error) {
+        if (submitButton) {
+          submitButton.textContent = 'Ошибка отправки';
+        }
+
+        statusMessage.textContent = 'Не удалось отправить форму. Попробуйте ещё раз.';
+        statusMessage.classList.add('is-error');
+      } finally {
+        window.setTimeout(() => {
+          if (!submitButton) return;
+
+          submitButton.disabled = false;
+          submitButton.textContent = 'Отправить';
+        }, 2000);
+      }
+    });
+  });
+}
+
+initTelegramForms();
 
 function initProjectCardLinks() {
   const openProjectCard = card => {
