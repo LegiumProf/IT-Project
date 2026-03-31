@@ -36,7 +36,7 @@ img {
 }
 
 .project-container {
-  width: min(100%, 1376px);
+  width: min(calc(100% - (var(--project-padding) * 2)), 1376px);
   margin: 0 auto;
 }
 
@@ -342,5 +342,40 @@ img {
 
   .project-gallery__wide-image {
     aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 959px) {
+  .project-hero {
+    height: auto;
+    min-height: 0;
+  }
+
+  .project-hero__media {
+    height: auto;
+  }
+
+  .project-hero__image {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .project-hero__overlay {
+    padding: 24px;
+  }
+
+  .project-description,
+  .project-decorative,
+  .project-technologies,
+  .project-gallery {
+    padding-top: 64px;
+  }
+
+  .cta {
+    margin-top: 64px;
+  }
+
+  .project-technologies__grid {
+    margin-top: 32px;
   }
 }

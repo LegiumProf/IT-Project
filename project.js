@@ -148,6 +148,10 @@ const projectData = {
 };
 
 const fallbackProjectSlug = "project-1";
+window.projectCatalog = Object.entries(projectData).map(([slug, project]) => ({
+  slug,
+  ...project,
+}));
 
 function getProjectSlug() {
   const searchParams = new URLSearchParams(window.location.search);
