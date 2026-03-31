@@ -6,6 +6,7 @@ const TELEGRAM_BOT_TOKEN = '8071276278:AAFvWUUM8QMGqgiJ9Oe-_K1M8u5VCqnpZos';
 const TELEGRAM_CHAT_ID = '1209666138';
 const TELEGRAM_PROFILE_URL = 'https://t.me/LegiumProf';
 const VK_PROFILE_URL = 'https://vk.com/semyonoffvadick';
+const CONTACT_EMAIL = 'semyonoffvadick@yandex.ru';
 
 function createBackToTopButton() {
   const button = document.createElement('button');
@@ -253,31 +254,37 @@ function initPrimaryActions() {
 
 initPrimaryActions();
 
+function initContactEmail() {
+  const socialsBlocks = document.querySelectorAll('.contact__socials');
+
+  socialsBlocks.forEach(socials => {
+    const parent = socials.parentElement;
+
+    if (!parent || parent.querySelector('.contact__email')) return;
+
+    const emailLink = document.createElement('a');
+
+    emailLink.className = 'contact__email';
+    emailLink.href = `mailto:${CONTACT_EMAIL}`;
+    emailLink.textContent = CONTACT_EMAIL;
+
+    socials.insertAdjacentElement('afterend', emailLink);
+  });
+}
+
+initContactEmail();
+
 function initNavContactLink() {
-  const contactSection = document.querySelector('.contact');
   const navLinks = document.querySelectorAll('.nav a');
   const contactLink = navLinks[navLinks.length - 1];
 
   if (!contactLink) return;
 
-  if (contactSection) {
-    if (!contactSection.id) {
-      contactSection.id = 'contact';
-    }
+  const isContactsPage = window.location.pathname.toLowerCase().endsWith('/contacts.html')
+    || window.location.pathname.toLowerCase().endsWith('\\contacts.html')
+    || window.location.pathname.toLowerCase().endsWith('contacts.html');
 
-    contactLink.setAttribute('href', '#contact');
-    contactLink.addEventListener('click', event => {
-      event.preventDefault();
-      contactSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    });
-
-    return;
-  }
-
-  contactLink.setAttribute('href', 'index.html#contact');
+  contactLink.setAttribute('href', isContactsPage ? '#contact' : 'contacts.html');
 }
 
 initNavContactLink();

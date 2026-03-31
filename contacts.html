@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты | Vadim Semenov</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="contacts-page">
+  <header class="header header--static">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">Vadim Semenov</a>
+
+      <nav class="nav">
+        <a href="index.html#services">Услуги</a>
+        <a href="projects.html">Проекты</a>
+        <a href="about.html">Обо мне</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#contact" class="btn btn--blue">Сотрудничать</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="contacts-page__main">
+    <section class="contact contact--page" id="contact">
+      <div class="container">
+        <div class="contact__inner">
+          <div class="contact__info">
+            <h1 class="contact__title">Давайте обсудим ваш проект</h1>
+            <p class="contact__text">
+              Напишите удобным способом или оставьте заявку. Отвечу, помогу
+              определить формат работы и подскажу, с чего лучше начать.
+            </p>
+
+            <div class="contact__socials">
+              <a href="#" class="contact__social" aria-label="Telegram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.96 5.17C21.69 4.94 21.3 4.88 20.97 5.01L3.29 11.88C2.83 12.06 2.54 12.5 2.56 12.99C2.57 13.49 2.9 13.91 3.38 14.05L7.56 15.3L9.09 20.2C9.23 20.66 9.63 20.99 10.11 21.03H10.21C10.66 21.03 11.08 20.78 11.29 20.38L13.7 15.91L18.18 19.38C18.59 19.7 19.14 19.75 19.6 19.51C20.06 19.27 20.36 18.8 20.4 18.29L22 6.18C22.04 5.79 21.88 5.4 21.58 5.14L21.96 5.17Z" fill="#171717"/>
+                </svg>
+              </a>
+              <a href="#" class="contact__social" aria-label="VK">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.48 17.27C7.75 17.27 5.06 13.91 4.94 8.3H7.32C7.4 12.46 9.2 14.23 10.62 14.6V8.3H12.86V11.9C14.25 11.75 15.71 10.1 16.2 8.3H18.44C18.06 10.55 16.49 12.21 15.37 12.89C16.49 13.44 18.29 14.88 18.97 17.27H16.5C15.96 15.55 14.62 14.2 12.86 14.02V17.27H12.48Z" fill="#171717"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact__form-wrap">
+            <form class="contact__form">
+              <label class="contact__field">
+                <span>Ваше имя</span>
+                <input type="text" name="name" placeholder="Как к вам обращаться" required />
+              </label>
+
+              <label class="contact__field">
+                <span>Контакт</span>
+                <input type="text" name="contact" placeholder="Telegram, WhatsApp, телефон или email" required />
+              </label>
+
+              <label class="contact__field">
+                <span>О проекте</span>
+                <textarea name="message" placeholder="Кратко расскажите о задаче"></textarea>
+              </label>
+
+              <label class="contact__checkbox">
+                <input type="checkbox" required />
+                <span>Соглашаюсь на обработку персональных данных и принимаю условия политики конфиденциальности</span>
+              </label>
+
+              <button class="contact__submit" type="submit">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
