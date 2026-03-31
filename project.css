@@ -1,4 +1,5 @@
 :root {
+  --project-body-bg: #0b0b0b;
   --project-page-bg: #111111;
   --project-title-color: #ffffff;
   --project-tag-text: #111111;
@@ -21,7 +22,7 @@ body {
 
 body {
   font-family: "Manrope", sans-serif;
-  background: #0b0b0b;
+  background: var(--project-body-bg);
   color: #ffffff;
 }
 
@@ -111,4 +112,235 @@ img {
   color: #111111;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
-  li
+  line-height: 1;
+}
+
+.project-description__content {
+  display: flex;
+  gap: 140px;
+  margin-top: 64px;
+}
+
+.project-description__text {
+  flex: 1 1 0;
+  margin: 0;
+  color: #111111;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.project-decorative {
+  padding: 96px var(--project-padding) 0;
+}
+
+.project-decorative__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.project-decorative__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.project-technologies {
+  padding: 96px var(--project-padding) 0;
+}
+
+.project-technologies__heading {
+  margin: 0;
+  color: #111111;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.project-technologies__lead {
+  max-width: 980px;
+  margin: 42px 0 0;
+  color: #111111;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.project-technologies__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 42px;
+  margin-top: 64px;
+}
+
+.project-technologies__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-technologies__number {
+  margin: 0;
+  color: #fd8744;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.project-technologies__title {
+  margin: 0;
+  color: #111111;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.project-technologies__text {
+  margin: 18px 0 0;
+  color: #111111;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.project-gallery {
+  padding-top: 96px;
+}
+
+.project-gallery__hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.project-gallery__row {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.project-gallery__square-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.project-gallery__wide-image {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.project-gallery__bottom-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-top: 24px;
+}
+
+.cta {
+  margin-top: 96px;
+}
+
+.contact {
+  background: transparent;
+}
+
+.contact__info,
+.contact__info .contact__title,
+.contact__info .contact__text {
+  color: #222222;
+}
+
+.contact__social:first-child {
+  background: #158cc7;
+}
+
+.contact__social:last-child {
+  background: #0077ff;
+}
+
+.contact__social:first-child svg path,
+.contact__social:last-child svg path {
+  fill: #ffffff;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --project-padding: 16px;
+  }
+
+  .project-hero__overlay {
+    padding: 20px;
+  }
+
+  .project-hero__title {
+    line-height: 1.05;
+  }
+
+  .project-hero__tags {
+    gap: 10px;
+  }
+
+  .project-hero__tag {
+    padding: 14px 16px;
+  }
+
+  .project-description {
+    padding-top: 96px;
+  }
+
+  .project-description__title {
+    width: 100%;
+    line-height: 1.05;
+  }
+
+  .project-description__content {
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .project-description__text {
+    font-size: 18px;
+  }
+
+  .project-decorative {
+    padding-top: 96px;
+  }
+
+  .project-decorative__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-technologies {
+    padding-top: 96px;
+  }
+
+  .project-technologies__lead {
+    margin-top: 28px;
+    font-size: 18px;
+  }
+
+  .project-technologies__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-technologies__card {
+    min-height: unset;
+  }
+
+  .project-technologies__text {
+    font-size: 17px;
+  }
+
+  .project-gallery__row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-gallery__wide-image {
+    aspect-ratio: 4 / 3;
+  }
+}
