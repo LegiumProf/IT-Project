@@ -9,6 +9,11 @@
     --content-gutter: 16px;
     --container-max-width: 1376px;
   }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
   
   body {
     font-family: "Monrope", "Manrope", sans-serif;
@@ -1346,6 +1351,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    flex: 1 1 auto;
     min-width: 0;
   }
 
@@ -1368,6 +1374,8 @@
     font-size: 36px;
     font-weight: 600;
     line-height: 1.1;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .process-step__toggle {
@@ -2046,6 +2054,10 @@
       font-size: 16px;
     }
 
+    .contact__email {
+      font-size: 18px;
+    }
+
     .contact__socials {
       flex-wrap: wrap;
     }
@@ -2161,17 +2173,25 @@
     }
 
     .process-step__lead {
+      align-items: flex-start;
       gap: 12px;
     }
 
     .process-step__number {
-      width: 48px;
-      height: 48px;
-      font-size: 28px;
+      width: 32px;
+      height: 32px;
+      font-size: 20px;
     }
 
     .process-step__lead h3 {
-      font-size: 22px;
+      font-size: 20px;
+    }
+
+    .process-step__toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      flex-shrink: 0;
     }
 
     .about-section__text p,
