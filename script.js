@@ -388,22 +388,14 @@ function initTelegramForms() {
       event.preventDefault();
 
       const formData = new FormData(form);
+
       const name = (formData.get('name') || '').toString().trim();
       const contact = (formData.get('contact') || '').toString().trim();
       const message = (formData.get('message') || '').toString().trim();
+      const hidden_field = (formData.get('hidden_field') || '').toString().trim();
+
       const pageTitle = document.title;
       const pageUrl = window.location.href;
-
-      const text = [
-        'Новая заявка с сайта',
-        '',
-        `Страница: ${pageTitle}`,
-        `Ссылка: ${pageUrl}`,
-        '',
-        `Имя: ${name || 'Не указано'}`,
-        `Контакт: ${contact || 'Не указан'}`,
-        `Сообщение: ${message || 'Не указано'}`,
-      ].join('\n');
 
       if (submitButton) {
         submitButton.disabled = true;
@@ -414,19 +406,25 @@ function initTelegramForms() {
       statusMessage.classList.remove('is-success', 'is-error');
 
       try {
-        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        const response = await fetch('https://portfolio-server-six-topaz.vercel.app/api/send-telegram', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text,
+            hidden_field,
+            name,
+            contact,
+            message,
+            pageTitle,
+            pageUrl,
           }),
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-          throw new Error('Telegram request failed');
+          throw new Error(data.error || 'Ошибка отправки');
         }
 
         if (submitButton) {
@@ -444,6 +442,8 @@ function initTelegramForms() {
 
         statusMessage.textContent = 'Не удалось отправить форму. Попробуйте ещё раз.';
         statusMessage.classList.add('is-error');
+
+        console.error('Form submit error:', error);
       } finally {
         window.setTimeout(() => {
           if (!submitButton) return;
