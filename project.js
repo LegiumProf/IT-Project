@@ -266,6 +266,33 @@ function renderProjectGallery(projectNumber, project) {
   });
 }
 
+function renderProjectPagination(activeSlug) {
+  const paginationLinks = document.querySelectorAll("[data-project-pagination]");
+
+  if (!paginationLinks.length || !window.projectCatalog?.length) return;
+
+  const projects = window.projectCatalog;
+  const activeIndex = projects.findIndex(project => project.slug === activeSlug);
+
+  if (activeIndex === -1) return;
+
+  const prevProject = projects[(activeIndex - 1 + projects.length) % projects.length];
+  const nextProject = projects[(activeIndex + 1) % projects.length];
+
+  paginationLinks.forEach(link => {
+    const direction = link.dataset.projectPagination;
+    const targetProject = direction === "prev" ? prevProject : nextProject;
+    const title = link.querySelector(".project-pagination__title");
+
+    link.href = `Project.html?slug=${targetProject.slug}`;
+    link.setAttribute("aria-label", `${direction === "prev" ? "Предыдущий" : "Следующий"} проект: ${targetProject.title}`);
+
+    if (title) {
+      title.textContent = targetProject.title;
+    }
+  });
+}
+
 const activeProjectSlug = getProjectSlug();
 const activeProject = projectData[activeProjectSlug];
 const activeProjectNumber = getProjectNumber(activeProjectSlug);
@@ -275,3 +302,4 @@ renderProjectDescription(activeProject);
 renderProjectDecorative(activeProjectNumber, activeProject);
 renderProjectTechnologies(activeProject);
 renderProjectGallery(activeProjectNumber, activeProject);
+renderProjectPagination(activeProjectSlug);
