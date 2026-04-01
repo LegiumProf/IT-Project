@@ -406,7 +406,7 @@ function initTelegramForms() {
       statusMessage.classList.remove('is-success', 'is-error');
 
       try {
-        const response = await fetch('https://portfolio-server-six-topaz.vercel.app/api/send-telegram', {
+        const response = await fetch('https://portfolio-server-six-topaz.vercel.app/api/send', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
