@@ -106,6 +106,13 @@ img {
   padding: 32px var(--project-padding) 0;
 }
 
+.project-back__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
 .project-back__link {
   display: inline-flex;
   align-items: center;
@@ -351,6 +358,15 @@ img {
 @media (max-width: 767px) {
   :root {
     --project-padding: 16px;
+  }
+
+  .project-back,
+  .project-description,
+  .project-decorative,
+  .project-technologies,
+  .project-pagination {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .project-hero__overlay {

@@ -686,7 +686,7 @@
   }
 
   .cta {
-    background: linear-gradient(135deg, #ff7a2f, #e55a1c);
+    background: rgb(253, 135, 68);
     padding: 96px 0;
     text-align: center;
     color: #111;
@@ -815,7 +815,7 @@
     border-radius: 16px;
     padding: 16px 18px;
     font-size: 16px;
-    color: rgba(34, 34, 34, 0.5);
+    color: #111;
     background: #f5f5f5;
     font-family: inherit;
     outline: none;
@@ -1013,11 +1013,16 @@
   .about-hero {
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+    background: rgb(253, 135, 68);
   }
 
   .about-hero__image {
     width: 100%;
+    height: 100%;
     display: block;
+    object-fit: cover;
+    object-position: center;
     user-select: none;
     -webkit-user-select: none;
     -webkit-user-drag: none;
@@ -1687,6 +1692,13 @@
   }
 
   @media (max-width: 768px) {
+    .services .container,
+    .contact .container,
+    .about-section .container,
+    .work-process .container {
+      width: calc(100% - (var(--content-gutter) * 2));
+    }
+
     .back-to-top {
       bottom: 16px;
     }
@@ -2034,7 +2046,7 @@
     }
 
     .contact {
-      padding: 72px 0;
+      padding: 48px 0;
     }
 
     .contact__inner {
